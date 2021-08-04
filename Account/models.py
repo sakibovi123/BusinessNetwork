@@ -25,10 +25,14 @@ class Sex(models.Model):
 
 
 class ExtendedUser(models.Model):
+    joined_date = models.DateTimeField(null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     sex = models.ForeignKey(Sex, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to="images/", null=True)
-    birthdate = models.DateField()
+    birthdate = models.DateField(null=True)
+
+    def __str__(self):
+        return str(self.user)
     
